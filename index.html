@@ -5,77 +5,192 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Teste</title>
 <style>
-  /* CORES */
+  /* ===== CORES ===== */
   :root{
     --azul-escuro:#000033;
+    --azul:#0a1f6e;
     --laranja:#f39c12;
+    --laranja-claro:#ffd27a;
     --vermelho:#cc0000;
     --cinza-menu:#d9d9d9;
     --cinza-fundo:#e8e8e8;
+    --branco:#fff;
   }
   *{box-sizing:border-box}
-  body{margin:0;font:12px/1.4 Verdana,Arial,sans-serif;color:#000}
+  body{
+    margin:0;font:13px/1.4 Verdana,Arial,sans-serif;color:#000;
+    background:var(--azul-escuro) repeating-linear-gradient(45deg,transparent 0 6px,rgba(255,255,255,.04) 6px 7px);
+  }
   a{color:#0000cc}
-  .ph{background:#bbb;border:1px solid #888;display:flex;align-items:center;justify-content:center;font-size:10px;color:#555}
+  .ph{background:linear-gradient(#cfcfcf,#aaa);border:1px solid #666;display:flex;align-items:center;justify-content:center;font-size:11px;color:#444}
 
-  /* TOPO */
-  #topo{display:flex;align-items:center;gap:8px;padding:4px 8px}
-  #logo{width:56px;height:56px;border-radius:50%;background:var(--vermelho);color:#fff;font:bold 14px Arial;display:flex;align-items:center;justify-content:center;flex:none}
-  #abas{flex:1;display:flex;flex-wrap:wrap;gap:4px;background:var(--laranja);border-radius:10px;padding:4px 8px}
-  #abas a{color:#000;text-decoration:none;font-weight:bold;padding:4px 10px}
-  #abas a:hover{background:#fff;border-radius:8px}
+  /* ===== COLUNA ÚNICA ===== */
+  #site{
+    max-width:520px;margin:0 auto;padding:6px;
+    display:flex;flex-direction:column;gap:6px;
+    background:var(--branco);border-left:3px solid var(--laranja);border-right:3px solid var(--laranja);
+    min-height:100vh;
+  }
 
-  /* Não lembro */
-  #pagina{display:flex;gap:4px;padding:4px;align-items:flex-start}
-  #menu{width:120px;flex:none;background:var(--cinza-menu)}
-  #centro{flex:1;min-width:0;background:var(--cinza-fundo);padding:12px 16px}
-  #direita{width:150px;flex:none}
+  /* efeito de botão/caixa em relevo, bem anos 2000 */
+  .bevel{border:2px solid;border-color:#fff #777 #777 #fff}
 
-  #menu a{display:block;padding:4px 6px;border-bottom:1px solid #fff;color:#000;text-decoration:none;font-weight:bold;font-size:10px}
+  /* ===== BARRA DE TOPO ===== */
+  #barra-topo{
+    display:flex;justify-content:space-between;gap:4px;flex-wrap:wrap;
+    background:var(--azul-escuro);color:#fff;padding:3px 6px;font-size:10px;font-weight:bold;
+  }
+  #barra-topo a{color:#fff;text-decoration:none;padding:0 4px}
+  #barra-topo a:hover{color:var(--laranja)}
+
+  /* ===== CABEÇALHO ===== */
+  #cabecalho{
+    display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;
+    background:radial-gradient(ellipse at center,#1c3a9e 0%,var(--azul-escuro) 75%);
+    color:#fff;text-align:center;border-bottom:4px solid var(--laranja);
+  }
+  #logo{
+    width:90px;height:90px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#ffd27a,var(--laranja) 45%,var(--vermelho) 100%);
+    box-shadow:0 0 14px rgba(255,200,80,.7),inset -4px -4px 8px rgba(0,0,0,.35);
+    display:flex;align-items:center;justify-content:center;font:bold 16px Arial;color:#fff;text-shadow:1px 1px 2px #000;
+  }
+  #cabecalho h1{margin:0;font:bold 30px Impact,Arial Black,Arial,sans-serif;letter-spacing:2px;text-shadow:2px 2px 0 #000}
+  #cabecalho .data{font-size:11px;color:var(--laranja-claro)}
+
+  /* ===== ABAS ===== */
+  #abas{display:flex;flex-direction:column;gap:3px;background:var(--laranja);border-radius:10px;padding:5px}
+  #abas a{
+    color:#000;text-decoration:none;font-weight:bold;text-align:center;padding:6px;border-radius:7px;
+    background:linear-gradient(#fff,var(--laranja-claro));border:1px solid #b36b00;
+  }
+  #abas a:hover{background:linear-gradient(var(--laranja-claro),#fff)}
+
+  /* ===== AVISO ROLANTE ===== */
+  #aviso{background:#000;color:#0f0;font:bold 12px "Courier New",monospace;padding:4px;overflow:hidden;white-space:nowrap}
+  #aviso span{display:inline-block;padding-left:100%;animation:rolar 14s linear infinite}
+  @keyframes rolar{to{transform:translateX(-100%)}}
+  @media (prefers-reduced-motion:reduce){#aviso span{animation:none;padding-left:0}}
+
+  /* ===== BUSCA ===== */
+  #busca{display:flex;gap:4px;background:var(--cinza-menu);padding:6px;align-items:center}
+  #busca input{flex:1;min-width:0;padding:4px;border:2px inset #999}
+  #busca button,.btn{
+    padding:4px 12px;font-weight:bold;cursor:pointer;
+    background:linear-gradient(#fff,#bbb);border:2px solid;border-color:#fff #666 #666 #fff;
+  }
+
+  /* ===== MENU ===== */
+  #menu{background:var(--cinza-menu);display:flex;flex-direction:column}
+  #menu a{
+    padding:6px 10px;border-bottom:1px solid #fff;color:#000;text-decoration:none;
+    font-weight:bold;font-size:11px;text-transform:uppercase;
+  }
+  #menu a::before{content:"\25A0  ";color:var(--laranja)}
   #menu a:hover{background:var(--laranja)}
 
-  #centro h1{font:bold 22px Arial;color:var(--vermelho);margin:0 0 8px}
-  #centro h2{font:bold 15px Arial;color:var(--azul-escuro);border-bottom:2px solid var(--laranja);margin:16px 0 6px}
-  #centro p{max-width:75ch;margin:0 0 10px}
-
-  .titulo-barra{background:var(--laranja);font-weight:bold;text-align:center;padding:2px;font-size:10px}
-  .box{background:var(--cinza-fundo);padding:6px;margin-bottom:4px}
-
-  #rodape{background:var(--azul-escuro);color:#fff;text-align:center;padding:10px;margin-top:6px}
-
-  @media(max-width:800px){
-    #topo{flex-wrap:wrap}
-    #pagina{flex-direction:column}
-    #menu,#direita{width:100%}
+  /* ===== TÍTULOS EM BARRA ===== */
+  .titulo-barra{
+    background:linear-gradient(var(--laranja-claro),var(--laranja));
+    border:1px solid #b36b00;font-weight:bold;text-transform:uppercase;
+    padding:3px 8px;font-size:11px;
   }
+
+  /* ===== DESTAQUE ===== */
+  #destaque{background:var(--cinza-fundo);padding:10px}
+  #destaque h2{font:bold 20px Arial;color:var(--vermelho);margin:0 0 6px}
+  #destaque .foto{height:150px;margin-bottom:8px}
+  #destaque p{margin:0 0 8px}
+
+  /* ===== CORPO DO TEXTO ===== */
+  #centro{background:var(--cinza-fundo);padding:12px 16px}
+  #centro h1{font:bold 22px Arial;color:var(--vermelho);margin:0 0 8px}
+  #centro h2{font:bold 15px Arial;color:var(--azul);border-bottom:2px solid var(--laranja);margin:16px 0 6px}
+  #centro p{margin:0 0 10px}
+  #centro blockquote{margin:10px 0;padding:6px 12px;background:#fff;border-left:4px solid var(--vermelho);font-style:italic}
+
+  /* ===== LISTA DE NOTÍCIAS ===== */
+  .lista{list-style:none;margin:0;padding:0;background:var(--cinza-fundo)}
+  .lista li{padding:6px 10px;border-bottom:1px dotted #888}
+  .lista li b{color:var(--vermelho);margin-right:4px}
+
+  /* ===== CAIXAS ===== */
+  .box{background:var(--cinza-fundo);padding:8px}
+  .duas{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .duas .box{height:100%}
+
+  /* ===== SELOS 88x31 ===== */
+  .selos{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;padding:6px;background:var(--cinza-fundo)}
+  .selos .ph{width:88px;height:31px;font-size:10px}
+
+  /* ===== CONTADOR ===== */
+  #contador{text-align:center;background:#000;color:#0f0;font:bold 14px "Courier New",monospace;padding:6px;letter-spacing:3px}
+
+  /* ===== RODAPÉ ===== */
+  #rodape{
+    background:var(--azul-escuro);color:#fff;text-align:center;padding:12px;
+    border-top:4px solid var(--laranja);font-size:11px;
+  }
+  #rodape a{color:#9cf;margin:0 4px}
 </style>
 </head>
 <body>
+<div id="site">
 
-<!-- TOPO -->
-<header id="topo">
-  <div id="logo">Teste</div>
+  <!-- ===== BARRA DE TOPO ===== -->
+  <div id="barra-topo">
+    <span><a href="#">Teste</a>|<a href="#">Teste</a>|<a href="#">Teste</a></span>
+    <span><a href="#">Teste</a>|<a href="#">Teste</a></span>
+  </div>
+
+  <!-- ===== CABEÇALHO ===== -->
+  <header id="cabecalho">
+    <div id="logo">Teste</div>
+    <h1>Teste</h1>
+    <div class="data">Teste</div>
+  </header>
+
+  <!-- ===== ABAS ===== -->
   <nav id="abas">
     <a href="#">Teste</a>
     <a href="#">Teste</a>
     <a href="#">Teste</a>
+    <a href="#">Teste</a>
   </nav>
-</header>
 
-<div id="pagina">
+  <!-- ===== AVISO ROLANTE ===== -->
+  <div id="aviso"><span>Teste Teste Teste Teste Teste Teste Teste Teste</span></div>
 
-  <!-- MENU LATERAL -->
+  <!-- ===== BUSCA ===== -->
+  <form id="busca" onsubmit="return false">
+    <input type="text" placeholder="Teste">
+    <button type="submit">Teste</button>
+  </form>
+
+  <!-- ===== MENU ===== -->
   <aside id="menu">
+    <a href="#">Teste</a>
     <a href="#">Teste</a>
     <a href="#">Teste</a>
     <a href="#">Teste</a>
     <a href="#">Teste</a>
   </aside>
 
-  <!-- CENTRO -->
+  <!-- ===== DESTAQUE ===== -->
+  <section id="destaque" class="bevel">
+    <h2>Teste</h2>
+    <div class="foto ph">Teste</div>
+    <p>Teste</p>
+    <button class="btn" type="button">Teste</button>
+  </section>
+
+  <!-- ===== TEXTO PRINCIPAL ===== -->
+  <div class="titulo-barra">Teste</div>
   <main id="centro">
     <h1>Teste</h1>
     <p>Teste</p>
+
+    <blockquote>Teste</blockquote>
 
     <h2>Teste</h2>
     <p>Teste</p>
@@ -83,20 +198,46 @@
     <h2>Teste</h2>
     <p>Teste</p>
   </main>
-  <aside id="direita">
-    <div class="titulo-barra">Teste</div>
-    <div class="box">Teste</div>
 
-    <div class="titulo-barra">Teste</div>
-    <div class="box">Teste</div>
+  <!-- ===== LISTA ===== -->
+  <div class="titulo-barra">Teste</div>
+  <ul class="lista">
+    <li><b>Teste:</b><a href="#">Teste</a></li>
+    <li><b>Teste:</b><a href="#">Teste</a></li>
+    <li><b>Teste:</b><a href="#">Teste</a></li>
+    <li><b>Teste:</b><a href="#">Teste</a></li>
+  </ul>
 
-    <div class="ph" style="height:100px">Teste</div>
-  </aside>
+  <!-- ===== DUAS CAIXAS LADO A LADO ===== -->
+  <div class="duas">
+    <div>
+      <div class="titulo-barra">Teste</div>
+      <div class="box">Teste</div>
+    </div>
+    <div>
+      <div class="titulo-barra">Teste</div>
+      <div class="box">Teste</div>
+    </div>
+  </div>
+
+  <!-- ===== SELOS ===== -->
+  <div class="titulo-barra">Teste</div>
+  <div class="selos">
+    <div class="ph">Teste</div>
+    <div class="ph">Teste</div>
+    <div class="ph">Teste</div>
+    <div class="ph">Teste</div>
+  </div>
+
+  <!-- ===== CONTADOR ===== -->
+  <div id="contador">Teste 000123</div>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer id="rodape">
+    <a href="#">Teste</a>|<a href="#">Teste</a>|<a href="#">Teste</a>|<a href="#">Teste</a><br><br>
+    Teste
+  </footer>
 
 </div>
-
-<!-- RODAPE -->
-<footer id="rodape">Teste</footer>
-
 </body>
 </html>
