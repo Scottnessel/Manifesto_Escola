@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste</title>
+<style>
+  /* CORES */
+  :root{
+    --azul-escuro:#000033;
+    --laranja:#f39c12;
+    --vermelho:#cc0000;
+    --cinza-menu:#d9d9d9;
+    --cinza-fundo:#e8e8e8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font:12px/1.4 Verdana,Arial,sans-serif;color:#000}
+  a{color:#0000cc}
+  .ph{background:#bbb;border:1px solid #888;display:flex;align-items:center;justify-content:center;font-size:10px;color:#555}
+
+  /* TOPO */
+  #topo{display:flex;align-items:center;gap:8px;padding:4px 8px}
+  #logo{width:56px;height:56px;border-radius:50%;background:var(--vermelho);color:#fff;font:bold 14px Arial;display:flex;align-items:center;justify-content:center;flex:none}
+  #abas{flex:1;display:flex;flex-wrap:wrap;gap:4px;background:var(--laranja);border-radius:10px;padding:4px 8px}
+  #abas a{color:#000;text-decoration:none;font-weight:bold;padding:4px 10px}
+  #abas a:hover{background:#fff;border-radius:8px}
+
+  /* Não lembro */
+  #pagina{display:flex;gap:4px;padding:4px;align-items:flex-start}
+  #menu{width:120px;flex:none;background:var(--cinza-menu)}
+  #centro{flex:1;min-width:0;background:var(--cinza-fundo);padding:12px 16px}
+  #direita{width:150px;flex:none}
+
+  #menu a{display:block;padding:4px 6px;border-bottom:1px solid #fff;color:#000;text-decoration:none;font-weight:bold;font-size:10px}
+  #menu a:hover{background:var(--laranja)}
+
+  #centro h1{font:bold 22px Arial;color:var(--vermelho);margin:0 0 8px}
+  #centro h2{font:bold 15px Arial;color:var(--azul-escuro);border-bottom:2px solid var(--laranja);margin:16px 0 6px}
+  #centro p{max-width:75ch;margin:0 0 10px}
+
+  .titulo-barra{background:var(--laranja);font-weight:bold;text-align:center;padding:2px;font-size:10px}
+  .box{background:var(--cinza-fundo);padding:6px;margin-bottom:4px}
+
+  #rodape{background:var(--azul-escuro);color:#fff;text-align:center;padding:10px;margin-top:6px}
+
+  @media(max-width:800px){
+    #topo{flex-wrap:wrap}
+    #pagina{flex-direction:column}
+    #menu,#direita{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPO -->
+<header id="topo">
+  <div id="logo">Teste</div>
+  <nav id="abas">
+    <a href="#">Teste</a>
+    <a href="#">Teste</a>
+    <a href="#">Teste</a>
+  </nav>
+</header>
+
+<div id="pagina">
+
+  <!-- MENU LATERAL -->
+  <aside id="menu">
+    <a href="#">Teste</a>
+    <a href="#">Teste</a>
+    <a href="#">Teste</a>
+    <a href="#">Teste</a>
+  </aside>
+
+  <!-- CENTRO -->
+  <main id="centro">
+    <h1>Teste</h1>
+    <p>Teste</p>
+
+    <h2>Teste</h2>
+    <p>Teste</p>
+
+    <h2>Teste</h2>
+    <p>Teste</p>
+  </main>
+  <aside id="direita">
+    <div class="titulo-barra">Teste</div>
+    <div class="box">Teste</div>
+
+    <div class="titulo-barra">Teste</div>
+    <div class="box">Teste</div>
+
+    <div class="ph" style="height:100px">Teste</div>
+  </aside>
+
+</div>
+
+<!-- RODAPE -->
+<footer id="rodape">Teste</footer>
+
+</body>
+</html>
