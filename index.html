@@ -4,198 +4,275 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Repertório: cortes de verba na ciência brasileira</title>
+<style>
+  :root { --azul:#072246; --vinho:#8B0000; --neve:#FFFAFA; --linha:rgba(7,34,70,.15); }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--neve); color:var(--azul); font:17px/1.6 Georgia,"Times New Roman",serif; }
+  a { color:var(--vinho); }
+  a:hover { color:var(--azul); }
+
+  /* Topo, com a ideia do slogan do Colégio AESC ("A educação por uma nova perspectiva") */
+  header { background:var(--azul); color:var(--neve); padding:64px 24px 56px; border-bottom:6px solid var(--vinho); }
+  .topo { max-width:1000px; margin:0 auto; }
+  .kicker { font:700 13px/1 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; color:var(--neve); opacity:.8; margin:0 0 18px; }
+  .kicker::before { content:""; display:inline-block; width:36px; height:3px; background:var(--vinho); vertical-align:middle; margin-right:12px; box-shadow:0 0 0 1px var(--neve) inset; }
+  header h1 { font-size:clamp(32px,6vw,56px); line-height:1.1; margin:0 0 16px; font-weight:700; }
+  header h1 span { border-bottom:4px solid var(--vinho); }
+  header p.sub { max-width:640px; margin:0; font-size:19px; opacity:.9; }
+
+  nav { background:var(--neve); border-bottom:1px solid var(--linha); position:sticky; top:0; z-index:5; }
+  nav ul { max-width:1000px; margin:0 auto; padding:10px 24px; list-style:none; display:flex; gap:8px; flex-wrap:wrap; }
+  nav a { display:block; font:700 13px/1 Arial,sans-serif; text-decoration:none; color:var(--azul); border:1px solid var(--azul); border-radius:999px; padding:8px 14px; }
+  nav a:hover { background:var(--azul); color:var(--neve); }
+
+  main { max-width:1000px; margin:0 auto; padding:40px 24px 24px; display:grid; grid-template-columns:1fr; gap:28px; }
+  @media (min-width:860px) { main { grid-template-columns:1fr 1fr; } }
+
+  article { background:#fff; border:1px solid var(--linha); border-top:5px solid var(--azul); border-radius:6px; padding:26px 26px 22px; display:flex; flex-direction:column; scroll-margin-top:70px; }
+  article:nth-child(even) { border-top-color:var(--vinho); }
+  .tipo { align-self:flex-start; font:700 12px/1 Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; background:var(--vinho); color:var(--neve); padding:7px 11px; border-radius:3px; margin:0 0 14px; }
+  article h2 { font-size:23px; line-height:1.25; margin:0 0 10px; }
+  article h2 a { color:var(--azul); text-decoration-color:var(--vinho); }
+  article p { margin:0 0 12px; }
+  blockquote { margin:0 0 14px; padding:8px 16px; border-left:4px solid var(--vinho); font-style:italic; font-size:19px; }
+  ul.topicos { margin:0 0 16px; padding-left:20px; }
+  ul.topicos li { margin-bottom:5px; }
+  ul.topicos li::marker { color:var(--vinho); }
+  figure { margin:0 0 14px; }
+  figure img { width:100%; height:auto; border-radius:4px; display:block; }
+  figcaption { font:13px/1.4 Arial,sans-serif; opacity:.75; margin-top:6px; }
+
+  /* Miniatura de vídeo */
+  .video { position:relative; display:block; aspect-ratio:16/9; border-radius:4px; overflow:hidden; background:var(--azul); margin:0 0 12px; text-decoration:none; }
+  .video .thumb { position:absolute; inset:0; background:var(--azul) center/cover no-repeat; }
+  .video::after { content:""; position:absolute; left:50%; top:50%; width:58px; height:58px; margin:-29px 0 0 -29px; border-radius:50%; background:var(--vinho); box-shadow:0 0 0 3px var(--neve); }
+  .video::before { content:""; position:absolute; left:50%; top:50%; margin:-10px 0 0 -6px; border-left:18px solid var(--neve); border-top:10px solid transparent; border-bottom:10px solid transparent; z-index:1; }
+  .video .legenda { position:absolute; left:0; right:0; bottom:0; padding:22px 14px 10px; font:700 13px/1.3 Arial,sans-serif; color:var(--neve); background:linear-gradient(transparent,rgba(7,34,70,.92)); z-index:1; }
+  .video:hover::after { background:var(--neve); }
+  .video:hover::before { border-left-color:var(--vinho); }
+
+  .links { margin-top:auto; padding-top:12px; border-top:1px solid var(--linha); font:700 14px/1.4 Arial,sans-serif; }
+  .links a { margin-right:14px; }
+
+  footer { margin-top:24px; background:var(--azul); color:var(--neve); border-top:6px solid var(--vinho); padding:32px 24px; text-align:center; font:15px/1.6 Arial,sans-serif; }
+  footer strong { display:block; font:700 20px/1.3 Georgia,serif; margin-bottom:4px; }
+</style>
 </head>
 <body>
 
-<h1>Repertório: cortes de verba na ciência brasileira</h1>
+<header>
+  <div class="topo">
+    <p class="kicker">Colégio AESC · Trabalho de Redação</p>
+    <h1>Repertório por uma <span>nova perspectiva</span></h1>
+    <p class="sub">Cortes de verba na ciência brasileira: notícias, comentários, exemplos, filmes, séries e livros para somar com o slide.</p>
+  </div>
+</header>
 
+<nav>
+  <ul>
+    <li><a href="#noticia">Notícias</a></li>
+    <li><a href="#comentario">Comentário</a></li>
+    <li><a href="#exemplos">Exemplos</a></li>
+    <li><a href="#filmes">Filmes</a></li>
+    <li><a href="#series">Séries</a></li>
+    <li><a href="#livro">Livro</a></li>
+    <li><a href="#conceito">Conceito</a></li>
+  </ul>
+</nav>
 
-<hr>
+<main>
 
-<article>
-  <p><strong>Tipo: Notícia</strong></p>
+<article id="noticia">
+  <p class="tipo">Notícia</p>
   <h2><a href="https://www.acessa.com/noticias/2026/06/331171-bloqueio-de-rs-300-milhoes-no-cnpq-pode-afetar-pagamento-de-milhares-de-bolsas-de-pesquisa.html">Bloqueio de verba no CNPq pode afetar o pagamento de milhares de bolsas</a></h2>
   <p>Reportagem sobre o bloqueio de recursos do CNPq em 2026, que ameaçou o pagamento de bolsas de pesquisa em todo o país.</p>
-  <ul>
+  <ul class="topicos">
     <li>Quase todo o valor bloqueado atingiria bolsas.</li>
     <li>O CNPq atende mais de cem mil bolsistas.</li>
     <li>O presidente do CNPq e a ministra da Ciência acionaram o Planejamento assim que o bloqueio saiu.</li>
     <li>Argumento: a ciência sofre com a instabilidade, não só com o tamanho do orçamento.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=bloqueio+CNPq+bolsas+pesquisadores">Ver vídeos sobre o assunto</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=protesto+cientistas+corte+bolsas+CNPq">Ver imagens</a></p>
+  <a class="video" data-id="" data-busca="bloqueio CNPq bolsas pesquisadores"><span class="thumb"></span><span class="legenda">Vídeo: bloqueio no CNPq e as bolsas</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=protesto+cientistas+corte+bolsas+CNPq">Ver imagens</a></p>
 </article>
 
-<hr>
-
 <article>
-  <p><strong>Tipo: Nota de entidades científicas</strong></p>
+  <p class="tipo">Nota de entidades científicas</p>
   <h2><a href="https://www.abc.org.br/wp-content/uploads/2026/01/Nota-conjunta-ABC-e-SBPC-Recomposicao-do-orcamento-aponta-para-novo-ciclo-de-valorizacao-das-universidades-e-da-ciencia.pdf">Nota conjunta da ABC e da SBPC sobre a recomposição do orçamento</a></h2>
   <p>As duas maiores entidades científicas do país avaliaram a devolução de recursos à ciência e pediram mais estabilidade.</p>
-  <ul>
+  <ul class="topicos">
     <li>Reconhecem a recomposição como um passo positivo.</li>
     <li>Lembram que ela devolve recursos já previstos, e não amplia o orçamento.</li>
     <li>Defendem previsibilidade ao longo do ano para bolsas, pesquisa e pós-graduação.</li>
     <li>Argumento: ciência não se faz com recursos que vão e voltam.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=SBPC+ABC+orçamento+ciência+recomposição">Ver vídeos sobre o assunto</a></p>
+  <a class="video" data-id="" data-busca="SBPC ABC orçamento ciência recomposição"><span class="thumb"></span><span class="legenda">Vídeo: SBPC e ABC defendem o orçamento da ciência</span></a>
 </article>
 
-<hr>
-
-<article>
-  <p><strong>Tipo: Comentário de especialista</strong></p>
+<article id="comentario">
+  <p class="tipo">Comentário de especialista</p>
   <h2>Denise Freire, professora titular de bioquímica da UFRJ</h2>
   <blockquote>“Hoje formamos profissionais para trabalhar no exterior.”</blockquote>
   <p>A professora aparece nos textos motivadores falando sobre o impacto dos cortes na formação de pesquisadores.</p>
-  <ul>
+  <ul class="topicos">
     <li>Fala em “fuga de cérebros”: o país forma e outros países aproveitam.</li>
     <li>Conecta o corte à perda de jovens pesquisadores.</li>
     <li>Argumento: investir em bolsa é investir no futuro do país.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=fuga+de+cérebros+brasil+cientistas">Ver vídeos sobre fuga de cérebros</a></p>
+  <a class="video" data-id="" data-busca="fuga de cérebros brasil cientistas"><span class="thumb"></span><span class="legenda">Vídeo: fuga de cérebros no Brasil</span></a>
 </article>
 
-<hr>
-
-<article>
-  <p><strong>Tipo: Exemplo histórico (saúde)</strong></p>
+<article id="exemplos">
+  <p class="tipo">Exemplo histórico · saúde</p>
   <h2>Butantan e Fiocruz na pandemia de Covid-19</h2>
   <p>Instituições públicas de pesquisa brasileiras produziram e distribuíram vacinas durante a pandemia.</p>
-  <ul>
+  <ul class="topicos">
     <li>Mostra que ciência pública salva vidas.</li>
     <li>Só foi possível porque havia pesquisadores, laboratórios e anos de investimento acumulado.</li>
     <li>Argumento: sem ciência nacional, o país depende de outros em momentos de crise.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=Butantan+Fiocruz+vacina+Covid+produção+nacional">Ver vídeos</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=Instituto+Butantan+vacina">Ver imagens</a></p>
+  <a class="video" data-id="" data-busca="Butantan Fiocruz vacina Covid produção nacional"><span class="thumb"></span><span class="legenda">Vídeo: Butantan e Fiocruz na pandemia</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=Instituto+Butantan+vacina">Ver imagens</a></p>
 </article>
 
-<hr>
-
 <article>
-  <p><strong>Tipo: Exemplo histórico (agricultura)</strong></p>
+  <p class="tipo">Exemplo histórico · agricultura</p>
   <h2>Embrapa e o Cerrado</h2>
   <p>A pesquisa agropecuária pública ajudou a tornar produtiva uma região antes considerada de solo pobre.</p>
-  <ul>
+  <ul class="topicos">
     <li>Pesquisa em solo, sementes e manejo.</li>
     <li>Impacto direto na economia e na produção de alimentos.</li>
     <li>Argumento: a ciência é motor do agronegócio brasileiro.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=Embrapa+Cerrado+história+pesquisa+agropecuária">Ver vídeos</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=Embrapa+pesquisa+Cerrado">Ver imagens</a></p>
+  <a class="video" data-id="" data-busca="Embrapa Cerrado história pesquisa agropecuária"><span class="thumb"></span><span class="legenda">Vídeo: a Embrapa e o Cerrado</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=Embrapa+pesquisa+Cerrado">Ver imagens</a></p>
 </article>
 
-<hr>
-
 <article>
-  <p><strong>Tipo: Exemplo internacional</strong></p>
+  <p class="tipo">Exemplo internacional</p>
   <h2>Coreia do Sul e China: desenvolvimento por meio da ciência</h2>
   <p>Países que apostaram forte em educação e pesquisa para sair de economias pobres e industrializar o país.</p>
-  <ul>
+  <ul class="topicos">
     <li>Investimento contínuo ao longo de décadas.</li>
     <li>Ciência ligada a tecnologia, indústria e exportação.</li>
     <li>Argumento: quem investe em conhecimento colhe soberania e riqueza.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=como+a+Coreia+do+Sul+investiu+em+educação+e+tecnologia">Ver vídeos sobre a Coreia do Sul</a> | <a href="https://www.youtube.com/results?search_query=como+a+China+investiu+em+ciência+e+tecnologia">Ver vídeos sobre a China</a></p>
+  <a class="video" data-id="" data-busca="como a China investiu em ciência e tecnologia"><span class="thumb"></span><span class="legenda">Vídeo: como a China investiu em ciência</span></a>
+  <p class="links"><a href="https://www.youtube.com/results?search_query=como+a+Coreia+do+Sul+investiu+em+educação+e+tecnologia">Ver vídeos sobre a Coreia do Sul</a></p>
 </article>
 
-<hr>
-
-<article>
-  <p><strong>Tipo: Filme</strong></p>
+<article id="filmes">
+  <p class="tipo">Filme</p>
   <h2>Não Olhe para Cima</h2>
   <p>Comédia de Adam McKay, com Leonardo DiCaprio, Jennifer Lawrence e Meryl Streep. Dois astrônomos descobrem um cometa que vai destruir a Terra e ninguém quer ouvir.</p>
-  <ul>
+  <ul class="topicos">
     <li>Sátira sobre negacionismo científico, política e redes sociais.</li>
     <li>Mostra o que acontece quando alertas de cientistas são ignorados.</li>
     <li>Foi um dos filmes mais vistos da história da Netflix.</li>
     <li>Argumento: descrença na ciência pode custar caro.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=Não+Olhe+para+Cima+trailer+oficial+Netflix">Assistir ao trailer</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=Não+Olhe+para+Cima+filme+cena">Ver imagens</a></p>
+  <a class="video" data-id="" data-busca="Não Olhe para Cima trailer oficial Netflix"><span class="thumb"></span><span class="legenda">Trailer: Não Olhe para Cima</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=Não+Olhe+para+Cima+filme+cena">Ver imagens</a></p>
 </article>
 
-<hr>
-
 <article>
-  <p><strong>Tipo: Filme</strong></p>
+  <p class="tipo">Filme</p>
   <h2>Estrelas Além do Tempo</h2>
   <p>Baseado em fatos reais: três matemáticas negras que trabalharam na NASA nos anos de corrida espacial.</p>
-  <ul>
+  <ul class="topicos">
     <li>Katherine Johnson, Dorothy Vaughan e Mary Jackson.</li>
     <li>Mostra o valor de investir em talentos e conhecimento.</li>
     <li>Superação de preconceito racial e de gênero na ciência.</li>
     <li>Argumento: a ciência avança quando abre espaço para pessoas capazes.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=Estrelas+Além+do+Tempo+trailer+legendado">Assistir ao trailer</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=Estrelas+Além+do+Tempo+filme">Ver imagens</a></p>
+  <a class="video" data-id="" data-busca="Estrelas Além do Tempo trailer legendado"><span class="thumb"></span><span class="legenda">Trailer: Estrelas Além do Tempo</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=Estrelas+Além+do+Tempo+filme">Ver imagens</a></p>
 </article>
 
-<hr>
-
-<article>
-  <p><strong>Tipo: Minissérie</strong></p>
+<article id="series">
+  <p class="tipo">Minissérie</p>
   <h2>Chernobyl (HBO)</h2>
   <p>Reconstitui o acidente nuclear de Chernobyl e a tentativa do governo soviético de esconder e minimizar a verdade.</p>
-  <ul>
+  <ul class="topicos">
     <li>Cientistas alertando e sendo desacreditados.</li>
     <li>A ocultação de informação agravou as consequências.</li>
     <li>Argumento: desprezar a ciência por conveniência política tem custo humano.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=Chernobyl+HBO+trailer+legendado">Assistir ao trailer</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=Chernobyl+série+HBO">Ver imagens</a></p>
+  <a class="video" data-id="" data-busca="Chernobyl HBO trailer legendado"><span class="thumb"></span><span class="legenda">Trailer: Chernobyl</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=Chernobyl+série+HBO">Ver imagens</a></p>
 </article>
 
-<hr>
-
 <article>
-  <p><strong>Tipo: Série documental</strong></p>
+  <p class="tipo">Série documental</p>
   <h2>Cosmos, de Carl Sagan</h2>
-  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Carl_Sagan_Planetary_Society.JPG?width=300" alt="Carl Sagan sentado ao lado de Bruce Murray e Louis Friedman, fundadores da Sociedade Planetária" width="300">
-  <p><small>Foto: NASA/JPL, domínio público (Wikimedia Commons).</small></p>
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Carl_Sagan_Planetary_Society.JPG?width=600" alt="Carl Sagan sentado ao lado de Bruce Murray e Louis Friedman, fundadores da Sociedade Planetária">
+    <figcaption>Foto: NASA/JPL, domínio público (Wikimedia Commons).</figcaption>
+  </figure>
   <p>Série de divulgação científica apresentada por Carl Sagan, refeita depois com Neil deGrasse Tyson.</p>
-  <ul>
+  <ul class="topicos">
     <li>Explica ciência para o grande público.</li>
     <li>Mostra como a curiosidade científica muda a visão que temos do mundo.</li>
     <li>Argumento: divulgar ciência aproxima a sociedade de quem a faz.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=Cosmos+Carl+Sagan+legendado">Assistir a trechos</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=Carl+Sagan+Cosmos">Ver mais imagens</a></p>
+  <a class="video" data-id="" data-busca="Cosmos Carl Sagan legendado"><span class="thumb"></span><span class="legenda">Vídeo: Cosmos, de Carl Sagan</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=Carl+Sagan+Cosmos">Ver mais imagens</a></p>
 </article>
 
-<hr>
-
-<article>
-  <p><strong>Tipo: Livro</strong></p>
+<article id="livro">
+  <p class="tipo">Livro</p>
   <h2>O Mundo Assombrado pelos Demônios, de Carl Sagan</h2>
   <p>Publicado em parceria com Ann Druyan. Defende o pensamento científico e crítico contra a superstição e a desinformação.</p>
-  <ul>
+  <ul class="topicos">
     <li>Fala dos perigos de uma sociedade que não entende ciência.</li>
     <li>Combina com negacionismo e pós-verdade.</li>
     <li>Argumento: pensar criticamente é uma defesa contra a manipulação.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=O+Mundo+Assombrado+pelos+Demônios+resumo">Ver vídeos de resumo</a></p>
+  <a class="video" data-id="" data-busca="O Mundo Assombrado pelos Demônios resumo"><span class="thumb"></span><span class="legenda">Vídeo: resumo do livro</span></a>
 </article>
 
-<hr>
-
-<article>
-  <p><strong>Tipo: Conceito</strong></p>
+<article id="conceito">
+  <p class="tipo">Conceito</p>
   <h2>Fuga de cérebros</h2>
   <p>É a saída de profissionais qualificados, como cientistas, para trabalhar em outros países.</p>
-  <ul>
+  <ul class="topicos">
     <li>O país paga pela formação e outro país colhe o resultado.</li>
     <li>Ligada à falta de bolsas, de laboratórios e de perspectiva de carreira.</li>
     <li>Argumento: sem investimento, o Brasil exporta talento em vez de tecnologia.</li>
   </ul>
-  <p><a href="https://www.youtube.com/results?search_query=fuga+de+cérebros+brasil">Ver vídeos</a> | <a href="https://www.google.com/search?tbm=isch&amp;q=fuga+de+cérebros+infográfico">Ver imagens</a></p>
+  <a class="video" data-id="" data-busca="fuga de cérebros brasil"><span class="thumb"></span><span class="legenda">Vídeo: fuga de cérebros</span></a>
+  <p class="links"><a href="https://www.google.com/search?tbm=isch&amp;q=fuga+de+cérebros+infográfico">Ver imagens</a></p>
 </article>
 
-<hr>
-
-<!--
-Para colocar um vídeo do YouTube direto na página, escolha o vídeo, copie o código depois de "v=" no endereço e cole assim:
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CODIGO_DO_VIDEO" title="Nome do vídeo" allowfullscreen></iframe>
--->
+</main>
 
 <footer>
-  <p>Site de apoio ao Trabalho de Redação. Versão sem cores, apenas HTML.</p>
+  <strong>Repertório por uma nova perspectiva</strong>
+  Colégio AESC · Valinhos – SP · Trabalho de Redação
 </footer>
+
+<script>
+  /*
+    COMO COLOCAR AS MINIATURAS DOS VÍDEOS:
+    1. Abra o vídeo no YouTube e copie o código que vem depois de "v=" no endereço
+       (exemplo: youtube.com/watch?v=ABC123xyz  ->  o código é ABC123xyz).
+    2. Cole esse código em data-id="" no cartão de vídeo correspondente lá em cima.
+    3. A miniatura aparece sozinha e o clique abre o vídeo.
+    Enquanto data-id estiver vazio, o cartão abre uma busca no YouTube.
+  */
+  document.querySelectorAll('.video').forEach(function (a) {
+    var id = (a.dataset.id || '').trim();
+    a.target = '_blank';
+    a.rel = 'noopener';
+    if (id) {
+      a.href = 'https://www.youtube.com/watch?v=' + id;
+      a.querySelector('.thumb').style.backgroundImage = 'url(https://img.youtube.com/vi/' + id + '/hqdefault.jpg)';
+    } else {
+      a.href = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(a.dataset.busca);
+    }
+  });
+</script>
 
 </body>
 </html>
